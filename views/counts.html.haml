@@ -1,0 +1,10 @@
+%p Leaderboard
+%table{border: "1"}
+  %tr
+    %th Name
+    %th Mob count
+  - @counts.each do |(name, count)|
+    %tr
+      %td #{name}
+      %td #{count}
+%p Total: #{@total}
