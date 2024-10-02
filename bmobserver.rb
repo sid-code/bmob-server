@@ -36,13 +36,13 @@ class BmobServer < Sinatra::Base
         db.execute("SELECT * FROM bmobs WHERE id = ?", e["id"]) do
           updated = true
           # just replace it
-          db.execute("UPDATE bmobs
+          db.execute2("UPDATE bmobs
                       SET keywords = ?, date = ?, count = ?
                       WHERE id = ?", e["keywords"], e["date"], e["count"], e["id"])
         end
         next if updated
 
-        db.execute("INSERT INTO bmobs (id, name, locuid, keywords, date, contributor, count)
+        db.execute2("INSERT INTO bmobs (id, name, locuid, keywords, date, contributor, count)
                     VALUES (?, ?, ?, ?, ?, ?, ?)", 
                     e["id"], e["name"], e["locuid"], e["keywords"], e["date"], e["contributor"], e["count"])
 
