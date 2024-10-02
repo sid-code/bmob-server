@@ -58,7 +58,7 @@ in
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
-        Type = "Simple";
+        Type = "simple";
         User = cfg.user;
         ExecStart = "${bmob-server}/bin/bmob-server ${cfg.address} ${cfg.port} ${cfg.dataDir}";
       };
