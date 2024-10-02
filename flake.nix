@@ -71,12 +71,19 @@
           env
           ;
 
-        packages = {
-          default = pkgs.callPackage ./. {
+        packages = rec {
+          default = bmob-server;
+          bmob-server = pkgs.callPackage ./. {
             inherit ruby;
             rubyEnv = env;
           };
         };
+
+        nixosModules = rec {
+          default = bmob-server;
+          bmob-server = import ./nixos-module packages.bmob-server;
+        };
+
         devShells = rec {
           default = dev;
           dev = pkgs.mkShell {
