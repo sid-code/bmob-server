@@ -6,6 +6,7 @@ bmob-server:
   ...
 }:
 let
+  inherit (builtins) toString;
   inherit (lib)
     mkEnableOption
     mkOption
@@ -60,7 +61,7 @@ in
       serviceConfig = {
         Type = "simple";
         User = cfg.user;
-        ExecStart = "${bmob-server}/bin/bmob-server ${cfg.address} ${cfg.port} ${cfg.dataDir}";
+        ExecStart = "${bmob-server}/bin/bmob-server ${cfg.address} ${toString cfg.port} ${cfg.dataDir}";
       };
     };
     users.users = {
