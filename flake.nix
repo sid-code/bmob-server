@@ -8,15 +8,20 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs";
-    ruby-nix.url = "github:inscapist/ruby-nix";
+    ruby-nix = {
+      url = "github:inscapist/ruby-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # a fork that supports platform dependant gem
     bundix = {
       url = "github:inscapist/bundix/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fu.url = "github:numtide/flake-utils";
-    bob-ruby.url = "github:bobvanderlinden/nixpkgs-ruby";
-    bob-ruby.inputs.nixpkgs.follows = "nixpkgs";
+    bob-ruby = {
+      url = "github:bobvanderlinden/nixpkgs-ruby";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
