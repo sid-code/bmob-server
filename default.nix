@@ -34,8 +34,9 @@ stdenv.mkDerivation {
     cat >$bin <<EOF
       #!/bin/sh -e
       cd $out/share/bmob-server
+      export BMOB_DB_PATH="\$3"
       exec ${rubyEnv}/bin/bundle exec ${rubyEnv}/bin/unicorn config.ru \
-        -E production -o "$1" -p "$2"
+        -E production -l "\$1:\$2"
     EOF
     chmod +x $bin
   '';

@@ -8,8 +8,12 @@ class BmobServer < Sinatra::Base
     "<h1>404</h1>"
   end
 
+  def get_db_path()
+    ENV["BMOB_DB_PATH"] or "./mobs.db"
+  end
+
   get "/" do
-    db = SQLite3::Database.new("./mobs.db")
+    db = SQLite3::Database.new(get_db_path)
     @counts = []
     db.execute("SELECT contributor, count(contributor) FROM bmobs GROUP BY contributor ORDER BY count(contributor)") do |row|
       @counts << row
@@ -23,7 +27,7 @@ class BmobServer < Sinatra::Base
 
   post "/upload" do
     entries = JSON.parse(request.body.read)
-    db = SQLite3::Database.new("./mobs.db")
+    db = SQLite3::Database.new(get_db_path)
     
     count = 0
     dupes = 0
@@ -60,7 +64,7 @@ class BmobServer < Sinatra::Base
 
   get "/download/:date" do
     content_type :"text/json"
-    db = SQLite3::Database.new("./mobs.db")
+    db = SQLite3::Database.new(get_db_path)
 
     entries = {entries: []}
     db.execute("SELECT * FROM bmobs WHERE date > ?", params[:date]) do |row|
@@ -80,7 +84,7 @@ class BmobServer < Sinatra::Base
   end
 
   get "/mobs.db" do
-    send_file("./mobs.db")
+    send_file(get_db_path)
   end
 
 end
