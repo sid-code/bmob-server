@@ -61,7 +61,7 @@ in
       serviceConfig = {
         Type = "simple";
         User = cfg.user;
-        ExecStart = "${bmob-server}/bin/bmob-server ${cfg.address} ${toString cfg.port} ${cfg.dataDir}";
+        ExecStart = "${bmob-server}/bin/bmob-server ${cfg.address} ${toString cfg.port} ${cfg.dataDir}/mobs.db";
       };
     };
     users.users = {
