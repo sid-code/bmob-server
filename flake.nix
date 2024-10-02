@@ -86,7 +86,7 @@
 
         nixosModules = rec {
           default = bmob-server;
-          bmob-server = import ./nixos-module packages.bmob-server;
+          bmob-server = import ./nixos-module.nix packages.bmob-server;
         };
 
         devShells = rec {
