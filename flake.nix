@@ -80,9 +80,10 @@
         }
       );
 
+      # This is only for x86_64-linux
       nixosModules = rec {
         default = bmob-server;
-        bmob-server = import ./nixos-module.nix packages.bmob-server;
+        bmob-server = import ./nixos-module.nix packages.x86_64-linux.bmob-server;
       };
 
       devShells = forEachSystem (
