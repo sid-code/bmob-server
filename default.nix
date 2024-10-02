@@ -32,11 +32,11 @@ stdenv.mkDerivation {
     cp -r * $out/share/bmob-server
     bin=$out/bin/bmob-server
     cat >$bin <<EOF
-      #!/bin/sh -e
-      cd $out/share/bmob-server
-      export BMOB_DB_PATH="\$3"
-      exec ${rubyEnv}/bin/bundle exec ${rubyEnv}/bin/unicorn config.ru \
-        -E production -l "\$1:\$2"
+    #!/bin/sh -e
+    cd $out/share/bmob-server
+    export BMOB_DB_PATH="\$3"
+    exec ${rubyEnv}/bin/bundle exec ${rubyEnv}/bin/unicorn config.ru \
+      -E production -l "\$1:\$2"
     EOF
     chmod +x $bin
   '';
