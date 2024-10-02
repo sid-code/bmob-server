@@ -71,6 +71,12 @@
           env
           ;
 
+        packages = {
+          default = pkgs.callPackage ./. {
+            inherit ruby;
+            rubyEnv = env;
+          };
+        };
         devShells = rec {
           default = dev;
           dev = pkgs.mkShell {

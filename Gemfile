@@ -13,3 +13,5 @@ gem "rackup", "~> 2.1"
 gem "haml", "~> 6.3"
 
 gem "sqlite3-ruby"
+
+gem "unicorn"

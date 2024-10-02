@@ -24,6 +24,18 @@
     targets = [];
     version = "6.3.0";
   };
+  kgio = {
+    groups = ["default"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "1ipzvw7n0kz1w8rkqybyxvf3hb601a770khm0xdqm68mc4aa59xx";
+      target = "ruby";
+      type = "gem";
+    };
+    targets = [];
+    version = "2.11.4";
+  };
   mustermann = {
     dependencies = ["ruby2_keywords"];
     groups = ["default"];
@@ -87,6 +99,18 @@
     };
     targets = [];
     version = "2.1.0";
+  };
+  raindrops = {
+    groups = ["default"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "0c27mcglrj928zkm4d2spj9yh2xkkka8ns5s6bidkwild3zvj3ma";
+      target = "ruby";
+      type = "gem";
+    };
+    targets = [];
+    version = "0.20.1";
   };
   ruby2_keywords = {
     groups = ["default"];
@@ -238,6 +262,19 @@
     };
     targets = [];
     version = "2.4.0";
+  };
+  unicorn = {
+    dependencies = ["kgio" "raindrops"];
+    groups = ["default"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "1h0gma14jjxiz6piyi6p99q7lya2mxrq79l03160hascvmx9ipa5";
+      target = "ruby";
+      type = "gem";
+    };
+    targets = [];
+    version = "6.1.0";
   };
   webrick = {
     groups = ["default"];
