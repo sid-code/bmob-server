@@ -67,6 +67,7 @@ in
       bmob-server = mkIf (cfg.user == "bmob-server") {
         isSystemUser = true;
         home = cfg.dataDir;
+        group = cfg.group;
       };
     };
     users.groups = {
