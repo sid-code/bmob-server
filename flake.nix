@@ -17,10 +17,6 @@
       url = "github:inscapist/bundix/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    bob-ruby = {
-      url = "github:bobvanderlinden/nixpkgs-ruby";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -29,7 +25,6 @@
       nixpkgs,
       ruby-nix,
       bundix,
-      bob-ruby,
     }:
     let
       supportedSystems = [ "x86_64-linux" ];
@@ -40,10 +35,8 @@
           f rec {
             pkgs = import nixpkgs {
               inherit system;
-              overlays = [ bob-ruby.overlays.default ];
             };
-            # See available versions here: https://github.com/bobvanderlinden/nixpkgs-ruby/blob/master/ruby/versions.json
-            ruby = pkgs."ruby-3.3.2";
+            ruby = pkgs.ruby;
             rubyNix = ruby-nix.lib pkgs;
             rubyEnv =
               (rubyNix {
